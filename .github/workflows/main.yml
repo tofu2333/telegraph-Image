@@ -23,5 +23,5 @@ jobs:
           git remote add upstream https://github.com/x-dr/telegraph-Image.git
           git fetch upstream
           git checkout main  # 或你想要同步的分支，例如 master
-          git merge upstream/main --allow-unrelated-histories # 允许不相关的历史记录
+          git merge upstream/main --allow-unrelated-histories -X theirs # 允许不相关的历史记录
           git push origin main
