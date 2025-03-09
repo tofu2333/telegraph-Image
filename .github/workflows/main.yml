@@ -1,0 +1,27 @@
+name: Sync with Upstream
+
+on:
+  #schedule:
+    #- cron: '0 0 * * *'  # 每天凌晨 0 点执行 (UTC 时间)
+  workflow_dispatch:  # 允许手动触发 workflow
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "tofu2333"  # 替换为你的名字
+          git config --global user.email "tofumilk@outlook.com"  # 替换为你的邮箱
+
+      - name: Sync with Upstream
+        run: |
+          git remote add upstream https://github.com/x-dr/telegraph-Image.git
+          git fetch upstream
+          git checkout main  # 或你想要同步的分支，例如 master
+          git merge upstream/main  # 或 upstream/master
+          git push origin main  # 或 origin master
